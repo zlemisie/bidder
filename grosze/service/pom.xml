@@ -10,7 +10,7 @@
   <dependencies>
   	<dependency>
 	  	<groupId>com.badbears</groupId>
-	  	<artifactId>core</artifactId>
+	  	<artifactId>httpclient</artifactId>
 	  	<version>0.0.1-SNAPSHOT</version>
 	  	<scope>import</scope>
   	</dependency>

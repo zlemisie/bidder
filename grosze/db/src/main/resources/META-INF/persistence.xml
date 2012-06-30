@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+  <persistence-unit name="groszePU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <properties>
+      <property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.DerbyPlatform"/>
+      <property name="eclipselink.ddl-generation" value="create-tables"/>
+	  <property name="eclipselink.weaving" value="static"/>
+      <property name="eclipselink.logging.level" value="FINEST"/>
+      <property name="eclipselink.logging.level.sql" value="FINEST"/>
+      <property name="eclipselink.logging.level.cache" value="FINEST"/>      
+      <property name="eclipselink.debug" value="ALL"/> 
+    </properties>
+  </persistence-unit>
+</persistence>

@@ -13,7 +13,27 @@ import org.springframework.stereotype.Component;
 @Component
 public class HttpRequest {
 
-	InputStream get(Long itemId) throws IOException {
+	InputStream getActionsUpdate(Long itemId) throws IOException {
+		DefaultHttpClient httpclient = prepareHttpClient();
+		HttpGet httpget = new HttpGet("http://za10groszy.pl/auctionsUpdate.txt?js=true&ids="+itemId+";&bidsId="+itemId);
+
+		HttpResponse response = httpclient.execute(httpget);
+		HttpEntity entity = response.getEntity();
+				
+		return entity.getContent();
+	}
+	
+	InputStream getActionData(String address) throws IOException {
+		DefaultHttpClient httpclient = prepareHttpClient();
+		HttpGet httpget = new HttpGet(address);
+
+		HttpResponse response = httpclient.execute(httpget);
+		HttpEntity entity = response.getEntity();
+				
+		return entity.getContent();
+	}
+
+	private DefaultHttpClient prepareHttpClient() {
 		DefaultHttpClient httpclient = new DefaultHttpClient();
 
 		httpclient
@@ -28,12 +48,6 @@ public class HttpRequest {
 
 		httpclient.getParams().setBooleanParameter(
 				"http.protocol.allow-circular-redirects", true);
-		HttpGet httpget = new HttpGet("http://za10groszy.pl/auctionsUpdate.txt?js=true&ids="+itemId+";&bidsId="+itemId);
-
-		HttpResponse response = httpclient.execute(httpget);
-		HttpEntity entity = response.getEntity();
-				
-		return entity.getContent();
-
+		return httpclient;
 	}	
 }

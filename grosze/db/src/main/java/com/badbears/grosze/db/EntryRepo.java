@@ -32,8 +32,6 @@ public class EntryRepo {
 		@SuppressWarnings("unchecked")
 		List<Entry> results = (List<Entry>) q.getResultList();				
 		return results.size() == 1;
-			
-	}
-		
+	}	
 	
 }

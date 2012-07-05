@@ -1,6 +1,5 @@
 package com.badbears.grosze.db;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -12,6 +11,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.badbears.grosze.db.model.Entry;
+import com.badbears.grosze.db.model.Item;
 
 @Repository
 public class ItemRepo {
@@ -20,20 +20,16 @@ public class ItemRepo {
 	private EntityManager em;
 		
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=false)
-	public void save(Entry entry) {
-		em.persist(entry);
+	public void save(Item item) {
+		em.persist(item);
 	}
 	
-	public boolean isInRepo(Long itemId, BigDecimal cost) {
-		
-		Query q = em.createQuery("SELECT e FROM Entry e WHERE e.itemId = ?1 AND e.cost = ?2");
+	public boolean isInRepo(Long itemId) {
+		Query q = em.createQuery("SELECT i FROM Item i WHERE i.itemId = ?1");
 		q.setParameter(1, itemId);
-		q.setParameter(2, cost);
 		@SuppressWarnings("unchecked")
 		List<Entry> results = (List<Entry>) q.getResultList();				
 		return results.size() == 1;
-			
 	}
-		
 	
 }

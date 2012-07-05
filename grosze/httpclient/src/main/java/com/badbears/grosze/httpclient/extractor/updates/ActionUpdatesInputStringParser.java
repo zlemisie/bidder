@@ -1,13 +1,13 @@
-package com.badbears.grosze.httpclient.extractor;
+package com.badbears.grosze.httpclient.extractor.updates;
 
 import java.util.Scanner;
 
 import org.springframework.stereotype.Component;
 
 @Component
-public class InputStringParser {
+public class ActionUpdatesInputStringParser {
 
-	String findTable(String inputString) {
+	public String findTable(String inputString) {
 		String foundStringContainingTable = "";
 		Scanner lineScanner = new Scanner(inputString);
 		lineScanner.useDelimiter("\n");

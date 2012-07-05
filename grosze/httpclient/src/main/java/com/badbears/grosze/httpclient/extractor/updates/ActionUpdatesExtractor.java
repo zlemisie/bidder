@@ -1,4 +1,4 @@
-package com.badbears.grosze.httpclient.extractor;
+package com.badbears.grosze.httpclient.extractor.updates;
 
 import java.io.IOException;
 
@@ -9,19 +9,20 @@ import org.springframework.stereotype.Component;
 import org.xml.sax.SAXException;
 
 
+
 @Component
-public class Extractor {
+public class ActionUpdatesExtractor {
 
 	@Autowired
-	private InputStringParser inputStringParser;
+	private ActionUpdatesInputStringParser inputStringParser;
 	
 	@Autowired 
-	private XmlParser xmlParser;
+	private ActionUpdatesXmlParser xmlParser;
 	
-	public OutputParameters extract(String inputString) {
+	public ActionUpdatesOutputParameters extractDataFromActionsUpdate(String inputString) {
 		
 		String table = inputStringParser.findTable(inputString);
-		OutputParameters outputParameters = null;
+		ActionUpdatesOutputParameters outputParameters = null;
 		try {
 			outputParameters = xmlParser.parseTable(table);
 		} catch (SAXException e) {

@@ -7,10 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.badbears.grosze.db.EntryRepo;
+import com.badbears.grosze.db.ItemRepo;
 import com.badbears.grosze.db.model.Entry;
+import com.badbears.grosze.db.model.Item;
 import com.badbears.grosze.httpclient.HttpClientException;
 import com.badbears.grosze.httpclient.IHttpClient;
-import com.badbears.grosze.httpclient.extractor.OutputParameters;
+import com.badbears.grosze.httpclient.extractor.actiondata.ActionData;
+import com.badbears.grosze.httpclient.extractor.updates.ActionUpdatesOutputParameters;
 
 @Service
 public class DataCollector {
@@ -19,18 +22,28 @@ public class DataCollector {
 	private IHttpClient httpClient;
 	
 	@Autowired
-	private EntryRepo repository;
+	private EntryRepo entryRepository;
 	
-	public void collect(Long itemId) {		
+	@Autowired
+	private ItemRepo itemRepository;
+		
+	public void collect(String address) {		
+		
+		ActionData actionData = httpClient.getActionData(address);
+		Long itemId = actionData.getItemId();
+		if (!itemRepository.isInRepo(itemId)) {
+			Item item = new Item(actionData.getItemId(), actionData.getActionName(), actionData.getMarketPrice(), actionData.getRebidTime(), actionData.getRebidAmount(), actionData.getShippingCost(), actionData.getRebids());
+			itemRepository.save(item);
+		}
 		
 		while (true) {
 			try {
 				Date timestamp = new Date();
-				OutputParameters output = httpClient.ask(itemId);
+				ActionUpdatesOutputParameters actionUpdates = httpClient.getActionUpdates(itemId);
 				
-				for (BigDecimal cost:output.getBidders().keySet()) {
-					if (!repository.isInRepo(itemId, cost)) {
-						String bidder = output.getBidders().get(cost);
+				for (BigDecimal cost:actionUpdates.getBidders().keySet()) {
+					if (!entryRepository.isInRepo(itemId, cost)) {
+						String bidder = actionUpdates.getBidders().get(cost);
 		
 						Boolean automatChanged = bidder.contains("(automat - zmiana ustawieñ)");
 						Boolean auromatedBid = bidder.contains("(automat)");
@@ -41,7 +54,7 @@ public class DataCollector {
 						bidder = bidder.replace(" (strza³)", "");
 						Entry entry = new Entry(itemId, timestamp, bidder, cost, auromatedBid, automatChanged, strike);
 						
-						repository.save(entry);
+						entryRepository.save(entry);
 						System.err.println("Zapisalem do bazy");
 						
 					}

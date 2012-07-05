@@ -25,34 +25,29 @@ public class Item {
 	private String itemName;
 	
 	private BigDecimal marketPrice;
+		
+	private Integer rebidTime;
 	
-	private Integer raiseBids;
+	@Column(precision=12, scale=2)
+	private BigDecimal rebidAmount;
 	
-	private BigDecimal raiseAmount;
+	private BigDecimal shippingCost;
 	
-	private Integer secondsToRaise;
-	
-	private BigDecimal actualPrice;
+	private Integer rebids;
+
+	public Item() {}
 
 	public Item(Long itemId, String itemName, BigDecimal marketPrice,
-			Integer raiseBids, BigDecimal raiseAmount, Integer secondsToRaise,
-			BigDecimal actualPrice) {
+			Integer rebidTime, BigDecimal rebidAmount, BigDecimal shippingCost,
+			Integer rebids) {
 		super();
 		this.itemId = itemId;
 		this.itemName = itemName;
 		this.marketPrice = marketPrice;
-		this.raiseBids = raiseBids;
-		this.raiseAmount = raiseAmount;
-		this.secondsToRaise = secondsToRaise;
-		this.actualPrice = actualPrice;
-	}
-
-	@Override
-	public String toString() {
-		return "Item [itemId=" + itemId + ", itemName=" + itemName
-				+ ", marketPrice=" + marketPrice + ", raiseBids=" + raiseBids
-				+ ", raiseAmount=" + raiseAmount + ", secondsToRaise="
-				+ secondsToRaise + ", actualPrice=" + actualPrice + "]";
+		this.rebidTime = rebidTime;
+		this.rebidAmount = rebidAmount;
+		this.shippingCost = shippingCost;
+		this.rebids = rebids;
 	}
 
 	public Long getId() {
@@ -71,21 +66,25 @@ public class Item {
 		return marketPrice;
 	}
 
-	public Integer getRaiseBids() {
-		return raiseBids;
+	public Integer getRebidTime() {
+		return rebidTime;
 	}
 
-	public BigDecimal getRaiseAmount() {
-		return raiseAmount;
+	public BigDecimal getRebidAmount() {
+		return rebidAmount;
 	}
 
-	public Integer getSecondsToRaise() {
-		return secondsToRaise;
+	public BigDecimal getShippingCost() {
+		return shippingCost;
 	}
 
-	public BigDecimal getActualPrice() {
-		return actualPrice;
+	public Integer getRebids() {
+		return rebids;
 	}
+	
+
+
+
 
 
 }

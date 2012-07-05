@@ -1,14 +1,14 @@
-package com.badbears.grosze.httpclient.extractor;
+package com.badbears.grosze.httpclient.extractor.updates;
 
 import java.math.BigDecimal;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class OutputParameters {
+public class ActionUpdatesOutputParameters {
 
 	private Map<BigDecimal, String> bidders;
 	
-	public OutputParameters() {
+	public ActionUpdatesOutputParameters() {
 		bidders = new TreeMap<BigDecimal, String>();
 	}
 		

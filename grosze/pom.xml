@@ -9,6 +9,7 @@
   	<module>db</module>
   	<module>service</module>
   	<module>web</module>
+  	<module>analyzer</module>
   </modules>
   
   <properties>

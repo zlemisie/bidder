@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="ENTRY")
-public class Entry {
+public class Entry implements Comparable<Entry> {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -90,6 +90,15 @@ public class Entry {
 
 	public Boolean getStrike() {
 		return strike;
+	}
+
+	@Override
+	public int compareTo(Entry o) {
+		Integer comparision = o.itemId.compareTo(this.itemId);
+		if (comparision == 0) {
+			comparision = o.id.compareTo(this.id);
+		} 
+		return comparision;
 	}
 
 	

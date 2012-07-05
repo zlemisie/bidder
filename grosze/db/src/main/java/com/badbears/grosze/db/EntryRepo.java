@@ -34,4 +34,12 @@ public class EntryRepo {
 		return results.size() == 1;
 	}	
 	
+	public List<Entry> find(Long itemId) {
+		Query q = em.createQuery("SELECT e FROM Entry e WHERE e.itemId = ?1");
+		q.setParameter(1, itemId);
+		@SuppressWarnings("unchecked")
+		List<Entry> results = (List<Entry>) q.getResultList();				
+		return results;
+	}	
+	
 }

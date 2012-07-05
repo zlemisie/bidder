@@ -32,4 +32,11 @@ public class ItemRepo {
 		return results.size() == 1;
 	}
 	
+	public Item find(Long itemId) {
+		Query q = em.createQuery("SELECT i FROM Item i WHERE i.itemId = ?1");
+		q.setParameter(1, itemId);
+		Item result = (Item)q.getSingleResult();				
+		return result;
+	}
+	
 }

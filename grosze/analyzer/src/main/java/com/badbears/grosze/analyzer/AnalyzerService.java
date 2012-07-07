@@ -21,12 +21,11 @@ public class AnalyzerService {
 	private ItemRepo itemRepo;
 
 	public AnalyzedData analyzeAuction(Long itemId) {
-		AnalyzedData data = new AnalyzedData();
 		
 		Item item = itemRepo.find(itemId);	
 		List<AnalyzedQueryResult> analyzedQueryResults = entryRepo.analyze(itemId);
 		AuctionBidsInfo auctionBidsInfo = entryRepo.getAuctionBidsInfo(itemId);
 		
-		return data;
+		return new AnalyzedData(item, analyzedQueryResults, auctionBidsInfo);
 	}
 }

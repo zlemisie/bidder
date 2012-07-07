@@ -12,7 +12,7 @@ public class Main {
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("classpath*:/spring/context.xml");
 		DataCollector dataCollectorService = ctx.getBean(DataCollector.class);
 		
-		dataCollectorService.collect("http://za10groszy.pl/auction/aparat_canon_eos_1100d_18-55mm_is_ii_489199985.html");
+		dataCollectorService.collect("http://za10groszy.pl/auction/pakiet_bidow_plus_489567123.html");
 	}
 
 }

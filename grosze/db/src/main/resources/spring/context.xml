@@ -16,7 +16,7 @@
 	
 	<context:property-placeholder location="classpath:META-INF/database.properties"/>
 	
-	 <bean
+	<bean
        class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
 
 	<bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource">
@@ -36,7 +36,7 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean-->
 	
-	<context:load-time-weaver aspectj-weaving="on"/>
+	<context:load-time-weaver aspectj-weaving="on" weaver-class="org.springframework.instrument.classloading.SimpleLoadTimeWeaver"/>
 
 	<tx:annotation-driven mode="aspectj" transaction-manager="transactionManager" />
 	

@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" 
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" 
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence 
+                                 http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">  
   <persistence-unit name="groszePU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+  	<class>com.badbears.grosze.db.model.Entry</class>
+  	<class>com.badbears.grosze.db.model.Item</class>
     <properties>
       <property name="eclipselink.target-database" value="org.eclipse.persistence.platform.database.DerbyPlatform"/>
       <property name="eclipselink.ddl-generation" value="create-tables"/>
@@ -9,7 +14,11 @@
       <property name="eclipselink.logging.level" value="FINEST"/>
       <property name="eclipselink.logging.level.sql" value="FINEST"/>
       <property name="eclipselink.logging.level.cache" value="FINEST"/>      
-      <property name="eclipselink.debug" value="ALL"/> 
+      <property name="eclipselink.debug" value="ALL"/>
+      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/> 
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/C:/work/grosze/service/groszDB;create=true"/> 
+      <property name="javax.persistence.jdbc.user" value="sa"/> 
+      <property name="javax.persistence.jdbc.password" value="sa"/> 
     </properties>
   </persistence-unit>
 </persistence>

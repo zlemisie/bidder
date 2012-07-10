@@ -35,7 +35,8 @@ public class ItemRepo {
 	public Item find(Long itemId) {
 		Query q = em.createQuery("SELECT i FROM Item i WHERE i.itemId = ?1");
 		q.setParameter(1, itemId);
-		Item result = (Item)q.getSingleResult();				
+		Object o = q.getSingleResult();	
+		Item result = (Item)o;				
 		return result;
 	}
 	

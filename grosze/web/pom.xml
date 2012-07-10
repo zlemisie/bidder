@@ -19,7 +19,7 @@
       <plugin>
         <groupId>org.mortbay.jetty</groupId>
         <artifactId>maven-jetty-plugin</artifactId>
-        <version>6.1.18</version>
+        <version>6.1.26</version>
         <configuration>
 		  <scanIntervalSeconds>10</scanIntervalSeconds>      		 
         </configuration>
@@ -27,30 +27,7 @@
     </plugins>
   </build>
   
-  <dependencies>
-	    <dependency>
-		  	<groupId>com.badbears</groupId>
-		  	<artifactId>db</artifactId>
-		  	<version>0.0.1-SNAPSHOT</version>
-		  	<exclusions>  	    
-		  	    <exclusion>
-		 			<groupId>org.springframework</groupId>
-		  			<artifactId>spring-context</artifactId>
-		  	    </exclusion>
-		  	    <exclusion>
-		 			<groupId>org.springframework</groupId>
-		  			<artifactId>spring-core</artifactId>
-		  	    </exclusion>
-		  	    <exclusion>
-		 			<groupId>org.springframework</groupId>
-		  			<artifactId>spring-beans</artifactId>
-		  	    </exclusion>	
-		  	    <exclusion>
-		 			<groupId>org.springframework</groupId>
-		  			<artifactId>spring-expression</artifactId>
-		  	    </exclusion>		  	    
-		  	</exclusions>
-	  	</dependency>     
+  <dependencies>   
 	  	<dependency>
 			<groupId>com.badbears</groupId>
 		  	<artifactId>analyzer</artifactId>

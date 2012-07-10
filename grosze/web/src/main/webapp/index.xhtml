@@ -2,18 +2,46 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:p="http://primefaces.org/ui">
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://java.sun.com/jsf/core">
  
     <h:head>
     </h:head>
  
     <h:body>
 		<h:form>
-			<p:spinner />  
-			<p:progressBar interval="5000" />
-			<p:inputText />
-			<p:commandButton value="Wyslij" ajax="false" />
-			#{viewAnalyzedData.it}
+	
+			<p:panel>
+				<h:panelGrid columns="2" cellpadding="2" id="userUpdateForm">
+				#{viewAnalyzedData.it}<br />
+				Current cost: #{viewAnalyzedData.analyzedData.auctionBidsInfo.currentCost}<br />
+				First recorded date: #{viewAnalyzedData.analyzedData.auctionBidsInfo.firstRecordedDate}<br />
+				Last recorded date: #{viewAnalyzedData.analyzedData.auctionBidsInfo.lastRecordedDate}<br />
+				</h:panelGrid>
+			</p:panel>
+			<br />
+			<br />
+			
+			<p:poll interval="2" update="biddersTable" />
+		
+			<p:dataTable id="biddersTable" value="#{viewAnalyzedData.analyzedData.analyzedQueryResults}" var="result" dynamic="true">
+				<p:column>
+    				<f:facet name="header">Bidder</f:facet>
+    				#{result.bidder}
+    			</p:column>
+     			<p:column>
+    				<f:facet name="header">Bids</f:facet>
+    				#{result.bids}
+    			</p:column>
+     			<p:column>
+    				<f:facet name="header">Start</f:facet>
+    				#{result.start}
+    			</p:column>
+    			<p:column>
+    				<f:facet name="header">End</f:facet>
+    				#{result.end}
+    			</p:column>
+			</p:dataTable>
 		</h:form>
     </h:body>
 </html> 

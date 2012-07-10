@@ -41,9 +41,10 @@
 	<tx:annotation-driven mode="aspectj" transaction-manager="transactionManager" />
 	
 	<bean
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+		class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean "
 		id="entityManagerFactory">
-		<property name="dataSource" ref="dataSource" />		
+		<!-- property name="dataSource" ref="dataSource" /-->
+		 <property name="persistenceUnitName" value="groszePU"/>		
 	</bean>
 
 

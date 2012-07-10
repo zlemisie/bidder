@@ -46,7 +46,7 @@ public class EntryRepo {
 	
 	public List<AnalyzedQueryResult> analyze(Long itemId) {
 		List<AnalyzedQueryResult> result = new ArrayList<AnalyzedQueryResult>();
-		Query q = em.createQuery("SELECT e.bidder bidder, count(e.bidder) bids, min(e.timestamp) starttime, max(e.timestamp) endtime FROM Entry e WHERE e.itemId = :itemId GROUP BY e.bidder ORDER BY endtime, bids DESC");
+		Query q = em.createQuery("SELECT e.bidder bidder, count(e.bidder) bids, min(e.timestamp) starttime, max(e.timestamp) endtime FROM Entry e WHERE e.itemId = :itemId GROUP BY e.bidder ORDER BY endtime, bids ASC");
 		q.setParameter("itemId", itemId);
 		@SuppressWarnings("unchecked")
 		List<Object[]> queryResult = q.getResultList();

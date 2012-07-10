@@ -15,7 +15,7 @@ public class HttpRequest {
 
 	InputStream getActionsUpdate(Long itemId) throws IOException {
 		DefaultHttpClient httpclient = prepareHttpClient();
-		HttpGet httpget = new HttpGet("http://za10groszy.pl/auctionsUpdate.txt?js=true&ids="+itemId+";&bidsId="+itemId);
+		HttpGet httpget = new HttpGet("http://www3.za10groszy.pl/auctionsUpdate.txt?js=true&ids="+itemId+";&bidsId="+itemId);
 
 		HttpResponse response = httpclient.execute(httpget);
 		HttpEntity entity = response.getEntity();

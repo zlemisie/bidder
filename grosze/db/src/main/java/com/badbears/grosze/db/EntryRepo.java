@@ -46,7 +46,7 @@ public class EntryRepo {
 	
 	public List<AnalyzedQueryResult> analyze(Long itemId) {
 		List<AnalyzedQueryResult> result = new ArrayList<AnalyzedQueryResult>();
-		Query q = em.createQuery("SELECT e.bidder bidder, count(e.bidder) bids, min(e.timestamp) starttime, max(e.timestamp) endtime FROM Entry e WHERE e.itemId = :itemId GROUP BY e.bidder ORDER BY endtime, bids ASC");
+		Query q = em.createQuery("SELECT e.bidder bidder, count(e.bidder) bids, min(e.timestamp) starttime, max(e.timestamp) endtime FROM Entry e WHERE e.itemId = :itemId GROUP BY e.bidder ORDER BY endtime DESC, bids DESC");
 		q.setParameter("itemId", itemId);
 		@SuppressWarnings("unchecked")
 		List<Object[]> queryResult = q.getResultList();
@@ -57,11 +57,10 @@ public class EntryRepo {
 	}
 	
 	public AuctionBidsInfo getAuctionBidsInfo(Long itemId) {
-		Query q = em.createQuery("SELECT max(e.cost) cost, min(e.timestamp) starttime, max(e.timestamp) endtime FROM Entry e WHERE e.itemId = :itemId");
+		Query q = em.createQuery("SELECT min(e.cost) startcost, max(e.cost) endcost, min(e.timestamp) starttime, max(e.timestamp) endtime FROM Entry e WHERE e.itemId = :itemId");
 		q.setParameter("itemId", itemId);
-		@SuppressWarnings("unchecked")
 		Object[] queryResult = (Object[])q.getSingleResult();
-		return new AuctionBidsInfo((BigDecimal)queryResult[0], (Date)queryResult[1], (Date)queryResult[2]);
+		return new AuctionBidsInfo((BigDecimal)queryResult[0], (BigDecimal)queryResult[1], (Date)queryResult[2], (Date)queryResult[3]);
 	}
 	
 	

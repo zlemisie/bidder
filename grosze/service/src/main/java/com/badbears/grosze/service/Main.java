@@ -12,7 +12,7 @@ public class Main {
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("classpath*:/spring/context.xml");
 		DataCollector dataCollectorService = ctx.getBean(DataCollector.class);
 		
-		dataCollectorService.collect("http://www3.za10groszy.pl/auction/pakiet_bidow_plus_489946565.html");
+		dataCollectorService.collect("http://www3.za10groszy.pl/auction/komplet_4_opon_dunlop_sp_sport_01_490671086.html");
 	}
 
 }

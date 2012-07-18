@@ -21,6 +21,8 @@ public class ViewAnalyzedData {
 	@ManagedProperty("#{userPrefs}")
 	private UserPrefs userPrefs;
 	
+	private AnalyzedData currentAnalysis;
+	
 	public Long getIt() {
 		return itemId;
 	}
@@ -33,6 +35,7 @@ public class ViewAnalyzedData {
 		} else {
 			data = analyzerService.analyzeAuction(userPrefs.getItemId());
 		}
+		this.currentAnalysis = data;
 		return data;
 	}
 
@@ -46,6 +49,10 @@ public class ViewAnalyzedData {
 
 	public void setUserPrefs(UserPrefs userPrefs) {
 		this.userPrefs = userPrefs;
+	}
+
+	public AnalyzedData getCurrentAnalysis() {
+		return currentAnalysis;
 	}
 
 

@@ -13,10 +13,19 @@
 	
 			<p:panel>
 				<h:panelGrid columns="2" cellpadding="2" id="userUpdateForm">
-				#{viewAnalyzedData.it}<br />
-				Current cost: #{viewAnalyzedData.analyzedData.auctionBidsInfo.currentCost}<br />
-				First recorded date: #{viewAnalyzedData.analyzedData.auctionBidsInfo.firstRecordedDate}<br />
-				Last recorded date: #{viewAnalyzedData.analyzedData.auctionBidsInfo.lastRecordedDate}<br />
+				Auction name: #{viewAnalyzedData.analyzedData.item.itemName}<br/>
+				Auction no.: #{viewAnalyzedData.currentAnalysis.item.itemId}<br />
+				Market price: #{viewAnalyzedData.currentAnalysis.item.marketPrice}<br />
+				Market price: #{viewAnalyzedData.currentAnalysis.item.marketPrice}<br />
+				Rebid time: #{viewAnalyzedData.currentAnalysis.item.rebidTime}<br />
+				Rebid amount: #{viewAnalyzedData.currentAnalysis.item.rebidAmount}<br />
+				Shipping cost: #{viewAnalyzedData.currentAnalysis.item.shippingCost}<br />
+				Rebids: #{viewAnalyzedData.currentAnalysis.item.rebids}<br />
+				<br />
+				Start cost: #{viewAnalyzedData.currentAnalysis.auctionBidsInfo.startCost}<br />
+				Current cost: #{viewAnalyzedData.currentAnalysis.auctionBidsInfo.currentCost}<br />
+				First recorded date: #{viewAnalyzedData.currentAnalysis.auctionBidsInfo.firstRecordedDate}<br />
+				Last recorded date: #{viewAnalyzedData.currentAnalysis.auctionBidsInfo.lastRecordedDate}<br />
 				</h:panelGrid>
 			</p:panel>
 			<br />
@@ -29,17 +38,27 @@
     				<f:facet name="header">Bidder</f:facet>
     				#{result.bidder}
     			</p:column>
+    			<p:column>
+    				<f:facet name="header">Cost</f:facet>
+    				<h:outputText value="#{result.bids * viewAnalyzedData.currentAnalysis.item.rebids * 0.10}" >
+						<f:convertNumber currencyCode="PLN" type="currency" />
+					</h:outputText>
+    			</p:column>
      			<p:column>
     				<f:facet name="header">Bids</f:facet>
     				#{result.bids}
-    			</p:column>
+    			</p:column>		
      			<p:column>
     				<f:facet name="header">Start</f:facet>
-    				#{result.start}
+    				 <h:outputText value="#{result.start}" >
+              			<f:convertDateTime pattern="HH:mm:ss" />
+ 					</h:outputText>
     			</p:column>
     			<p:column>
     				<f:facet name="header">End</f:facet>
-    				#{result.end}
+    				<h:outputText value="#{result.end}" >
+              			<f:convertDateTime pattern="HH:mm:ss" />
+ 					</h:outputText>
     			</p:column>
 			</p:dataTable>
 		</h:form>

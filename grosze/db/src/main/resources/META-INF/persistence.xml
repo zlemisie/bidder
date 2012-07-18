@@ -15,10 +15,6 @@
       <property name="eclipselink.logging.level.sql" value="FINEST"/>
       <property name="eclipselink.logging.level.cache" value="FINEST"/>      
       <property name="eclipselink.debug" value="ALL"/>
-      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/> 
-      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/C:/work/grosze/service/groszDB;create=true"/> 
-      <property name="javax.persistence.jdbc.user" value="sa"/> 
-      <property name="javax.persistence.jdbc.password" value="sa"/> 
     </properties>
   </persistence-unit>
 </persistence>
